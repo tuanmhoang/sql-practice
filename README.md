@@ -20,6 +20,16 @@ docker compose up -d
 - generate timestamp for dob ideas: https://stackoverflow.com/questions/22964272/postgresql-get-a-random-datetime-timestamp-between-two-datetime-timestamp
 - concat string: https://stackoverflow.com/questions/19942824/how-to-concatenate-columns-in-a-postgres-select
 - random number from range (for scores): https://stackoverflow.com/questions/1400505/generate-a-random-number-in-the-range-1-10
+- btree index references: https://towardsdatascience.com/climbing-b-tree-indexes-in-postgres-b67a7e596db
+- indexes: https://devcenter.heroku.com/articles/postgresql-indexes#index-types
+
+>B-Tree is the default that you get when you do CREATE INDEX. Virtually all databases will have some B-tree indexes. B-trees attempt to remain balanced, with the amount of data in each branch of the tree being roughly the same. Therefore the number of levels that must be traversed to find rows is always in the same ballpark. B-tree indexes can be used for equality and range queries efficiently. They can operate against all datatypes, and can also be used to retrieve NULL values. B-trees are designed to work very well with caching, even when only partially cached.
+>
+>Hash Indexes pre-Postgres 10 are only useful for equality comparisons, but you pretty much never want to use them since they are not transaction safe, need to be manually rebuilt after crashes, and are not replicated to followers, so the advantage over using a B-Tree is rather small. In Postgres 10 and above, hash indexes are now write-ahead logged and replicated to followers.
+>
+>Generalized Inverted Indexes (GIN) are useful when an index must map many values to one row, whereas B-Tree indexes are optimized for when a row has a single key value. GINs are good for indexing array values as well as for implementing full-text search.
+>
+>Generalized Search Tree (GiST) indexes allow you to build general balanced tree structures, and can be used for operations beyond equality and range comparisons. They are used to index the geometric data types, as well as full-text search.
 
 ## What to test?
 
@@ -37,4 +47,39 @@ c. 1 million of marks
 
 ![image](https://user-images.githubusercontent.com/37680968/144784019-0b2bc3b8-5ddd-4a66-8ba5-eb66a057a888.png)
 
-## Result
+## Queries to do
+
+1/Select all primary skills that contain more than one word (please note that both ‘-‘ and ‘ ’ could be used as a separator). 
+
+2/Select all students who do not have a second name (it is absent or consists of only one letter/letter with a dot). 
+
+3/Select number of students passed exams for each subject and order result by a number of student descending. 
+
+4/Select the number of students with the same exam marks for each subject. 
+
+5/Select students who passed at least two exams for different subjects. 
+
+6/Select students who passed at least two exams for the same subject. 
+
+7/Select all subjects which exams passed only students with the same primary skills. 
+
+8/Select all subjects which exams passed only students with the different primary skills. It means that all students passed the exam for the one subject must have different primary skill. 
+
+9/Select students who do not pass any exam using each of the following operator: 
+- Outer join
+- Subquery with ‘not in’ clause
+- Subquery with ‘any ‘ clause Check which approach is faster for 1000, 10K, 100K exams and 10, 1K, 100K students
+
+10/Select all students whose average mark is bigger than the overall average mark. 
+
+11/Select the top 5 students who passed their last exam better than average students. 
+
+12/Select the biggest mark for each student and add text description for the mark (use COALESCE and WHEN operators) 
+- In case if the student has not passed any exam ‘not passed' should be returned.
+- If the student mark is 1,2,3 – it should be returned as ‘BAD’
+- If the student mark is 4,5,6 – it should be returned as ‘AVERAGE’
+- If the student mark is 7,8 – it should be returned as ‘GOOD’
+- If the student mark is 9,10 – it should be returned as ‘EXCELLENT’
+
+13/Select the number of all marks for each mark type (‘BAD’, ‘AVERAGE’,…). 
+
