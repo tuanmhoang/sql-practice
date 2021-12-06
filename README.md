@@ -83,3 +83,6 @@ c. 1 million of marks
 
 13/Select the number of all marks for each mark type (‘BAD’, ‘AVERAGE’,…). 
 
+## Results
+
+Check: https://github.com/tuanmhoang/sql-practice/wiki
