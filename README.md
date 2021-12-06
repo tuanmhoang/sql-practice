@@ -18,6 +18,8 @@ docker compose up -d
 - ideas to generate dummy data: https://stackoverflow.com/questions/24841142/how-can-i-generate-big-data-sample-for-postgresql-using-generate-series-and-rand
 - nice ideas for generating data https://gist.github.com/jbnv/ca5a7829927a6b8f2308
 - generate timestamp for dob ideas: https://stackoverflow.com/questions/22964272/postgresql-get-a-random-datetime-timestamp-between-two-datetime-timestamp
+- concat string: https://stackoverflow.com/questions/19942824/how-to-concatenate-columns-in-a-postgres-select
+- random number from range (for scores): https://stackoverflow.com/questions/1400505/generate-a-random-number-in-the-range-1-10
 
 ## What to test?
 
