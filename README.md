@@ -22,6 +22,8 @@ docker compose up -d
 - random number from range (for scores): https://stackoverflow.com/questions/1400505/generate-a-random-number-in-the-range-1-10
 - btree index references: https://towardsdatascience.com/climbing-b-tree-indexes-in-postgres-b67a7e596db
 - indexes: https://devcenter.heroku.com/articles/postgresql-indexes#index-types
+- join: https://www.sqlshack.com/sql-outer-join-overview-and-examples/
+- group by range: https://stackoverflow.com/questions/32543930/group-by-multiple-ranges-in-postgresql?rq=1
 
 >B-Tree is the default that you get when you do CREATE INDEX. Virtually all databases will have some B-tree indexes. B-trees attempt to remain balanced, with the amount of data in each branch of the tree being roughly the same. Therefore the number of levels that must be traversed to find rows is always in the same ballpark. B-tree indexes can be used for equality and range queries efficiently. They can operate against all datatypes, and can also be used to retrieve NULL values. B-trees are designed to work very well with caching, even when only partially cached.
 >
@@ -45,7 +47,7 @@ c. 1 million of marks
 
 ## Diagram
 
-![image](https://user-images.githubusercontent.com/37680968/144784019-0b2bc3b8-5ddd-4a66-8ba5-eb66a057a888.png)
+![image](https://user-images.githubusercontent.com/37680968/144959289-802c8431-e421-47fe-917f-225c2dc41527.png)
 
 ## Queries to do
 
