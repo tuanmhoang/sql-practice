@@ -1,0 +1,1 @@
+Reference: https://stackoverflow.com/questions/12505158/generating-a-uuid-in-postgres-for-insert-statement
